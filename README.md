@@ -1,30 +1,105 @@
-# GroupChatHomework
-Group chat using the Raspberry PI as a server and the Pc as clients
 
-In order to be able to put the group chat work, follow these steps.
+# Raspberry Group Chat
 
-
-
-1. Open the Makefile and check if CC = aarch64-buildroot-linux-gnu-gcc is uncomment
-2. Comment the CC = gcc line
-3. Open the terminal in the folder directory
-4. Type make clean to clean all the executables and .o files
-5. Type make create_server to create the server executable
-6. Type make transfer_server to send the executable to the raspberry
-7. Commment the CC = aarch64-buildroot-linux-gnu-gcc line and uncomment CC = gcc line
-8. Type make create_client to create the client
-9. Type make create_sendout to create the send program
-10. Start executing the server on raspberry with a 5000 port
-11. Type make connect_client
-
-	And the group chat shoud be working.
-
-To send messages type make send_default_msg or type ./send.out <command> <message>
-All the messages will be displayed on the terminal.
+This project is a simple group chat which use Raspberry PI 4 as a server and 
+the Pc as a client/clients.
 
 
 
-NOTE: This tutorial is to use raspberry pi 4 as a server. If you don't it, please don't
-	do the first two steps. Instead, comment the CC = aarch64-buildroot-linux-gnu-gcc
-	and let the CC = gcc line always uncomment.
-	Also, don't do step 6. 
+
+## Download Project
+
+For ssh connection:
+```bash
+    git clone git@github.com:HugoRibeiro-A88287-UM/GroupChatHomework.git
+```
+
+For https connection:
+```bash
+    git clone https://github.com/HugoRibeiro-A88287-UM/GroupChatHomework.git
+```
+
+Go to the project directory:
+
+```bash
+    cd GroupChatHomework
+```
+## Installation
+
+To install this project it's simple. 
+
+* Open the command line into the project folder
+
+* Type nano Makefile
+
+* Change the RASPIP to yours.
+
+* Save Makefile
+
+* Type: 
+```bash
+	make all
+```
+
+NOTE: 
+    This tutorial is to use raspberry pi 4 as a server. All the makefile was done to that purpose. 
+    If you want to have your PC as client and server, all you need to do is to change the compiler
+    for the server.
+
+
+## Run 
+
+To run the project, please first connect your raspberry to the computer with
+a ssh connection. It's also possible to use UART connection. 
+That option won't be approached here.
+
+
+* Go to your local project folder
+
+* Type make transfer_server to send the executable to the raspberry;
+
+* Start executing the server on raspberry with the port number.
+    Use the command: ./TPCServerRasp.elf <PORT> 
+
+* Type make connect_client to connect the client to the server
+
+* Start communicate with your friends :)
+
+
+To send messages there are two way:
+
+To send a default message to all clients:
+
+
+        make send_default_msg 
+    
+To send specific messages:
+
+        ./send.out <command> <message> 
+
+
+
+
+## Command list
+
+The available command list is:
+
+* send 
+
+        To send a message for all the clients
+
+* name
+
+        Change the name on the group chat
+
+* help
+
+        Show all the available commands
+
+* kill
+
+        Disconnect the group chat
+
+
+
+
